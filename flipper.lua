@@ -11,7 +11,7 @@ local kickTimeLeft = ''
 local startCMD = ''
 local stopCMD = ''
 local startZone = ''
-local missions = {"Custom", "Pups of War", "Time and Tides"}
+local missions = {"Custom", "Pups of War", "Time and Tides", "Assault the Tower"}
 local mission = 1
 
 local function kickTask()
@@ -107,6 +107,12 @@ local function missionLibrary(mission)
         requestPhrase = 'we\'ll travel there'
         enterPhrase = 'begin'
     end
+
+    if mission == "Assault the Tower" then
+        npcName = "General Serobi"
+        requestPhrase = "move"
+        enterPhrase = "ready"
+    end
 end
 
 local co = nil
@@ -162,6 +168,9 @@ local function renderUI()
         stopCMD = ImGui.InputText("/command to chill out", stopCMD)
         if ImGui.Button("Request and Enter Mission") then
             startInteraction()
+        end
+        if imgui.Button("Stop Script") then
+            mq.exit()
         end
         missionLibrary(missions[mission])
         ImGui.End()
