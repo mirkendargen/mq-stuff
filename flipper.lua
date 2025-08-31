@@ -11,7 +11,7 @@ local kickTimeLeft = ''
 local startCMD = ''
 local stopCMD = ''
 local startZone = ''
-local missions = {"Custom", "Pups of War", "Time and Tides", "Assault the Tower"}
+local missions = {"Custom", "Pups of War", "Time and Tides", "Assault the Tower", "Breaking the Seal"}
 local mission = 1
 
 local function kickTask()
@@ -119,6 +119,12 @@ local function missionLibrary(mission)
         npcName = "General Serobi"
         requestPhrase = "move"
         enterPhrase = "ready"
+    end
+
+    if mission == "Breaking the Seal" then
+        npcName = "Kela Lor Telaris"
+        requestPhrase = "accompany"
+        enterPhrase = "depart"
     end
 end
 
