@@ -11,13 +11,7 @@ local State = {
 
 -- === Helper Function: Check XTarget ===
 local function AnyXtarTargets()
-    if not mq.TLO.XTarget then return false end
-    for i = 1, mq.TLO.XTarget.Count() do
-        local slot = mq.TLO.XTarget[i]
-        if slot and slot.ID() and slot.Dead() == false then
-            return true
-        end
-    end
+    if mq.TLO.Me.XTHaterCount() > 0 then return true end
     return false
 end
 
@@ -112,8 +106,10 @@ local function HuntLoop()
         else
             if AnyXtarTargets() then
                 State.status = "Waiting for XTarget to clear..."
-                mq.cmd("/attack off")
-                mq.cmd("/nav stop")
+                local id = mq.TLO.Me.XTarget(1).ID()
+                mq.cmdf('/target id %d', id)
+                mq.cmd("/attack on")
+                mq.cmd("/nav target")
                 mq.delay(1000)
             else
                 local foundTarget = false
