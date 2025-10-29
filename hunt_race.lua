@@ -106,7 +106,7 @@ local function HuntLoop()
         else
             if AnyXtarTargets() then
                 State.status = "Waiting for XTarget to clear..."
-                local id = mq.TLO.Me.XTarget(1).ID()
+                local id = mq.TLO.Spawn("xtarhater").ID()
                 mq.cmdf('/target id %d', id)
                 mq.cmd("/attack on")
                 mq.cmd("/nav target")
